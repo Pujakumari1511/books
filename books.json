@@ -68,6 +68,32 @@
       "stars": "5",
       "id": 5,
       "img": "https://www.davidjpphillips.com/wp-content/uploads/2023/08/highonlife_copy-195x300.jpg"
+    },
+    {
+      "author": "Puja",
+      "name": "Holiday App",
+      "genres": [
+        "Mystery"
+      ],
+      "completed": true,
+      "start": "02/20/4",
+      "end": "03/04/4",
+      "stars": null,
+      "img": "\"https://upload.wikimedia.org/wikipedia/en/0/05/Littleprince.JPG\"",
+      "id": 6
+    },
+    {
+      "author": "Puja",
+      "name": "Holiday App",
+      "genres": [
+        "Business"
+      ],
+      "completed": true,
+      "start": "02/22/5",
+      "end": "02/14/4",
+      "stars": null,
+      "img": "\"https://upload.wikimedia.org/wikipedia/en/0/05/Littleprince.JPG\"",
+      "id": 7
     }
   ]
 }

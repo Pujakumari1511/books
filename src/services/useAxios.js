@@ -3,7 +3,9 @@ import axios from 'axios';
 
 const useAxios = (baseUrl) => {  //define a function useAxios and passing the parameter baseUrl
   const [data, setData] = useState(null); //used useState to set the data
+  
   const [alert, setAlert] = useState({ show: false, message: '', type: '' }); //used useState to set the alert
+
   const [loading, setLoading] = useState(false); //used useState to set the loading state
  
   const showAlert = (message, type) => {  //define a function to show the alert
