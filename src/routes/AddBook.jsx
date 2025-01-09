@@ -20,6 +20,7 @@ function AddBook() {  //define a function for adding a book
     author: '',
     name: '',
     genres: [],
+    img: '',
     completed: false,
     start: null,
     end: null,
@@ -30,12 +31,27 @@ function AddBook() {  //define a function for adding a book
 
   const handleChange = (e) => {
     const {name, value} = e.target;
-    setBook((prevState) => ({...prevState, [name]: value}));
+    setBook((prevState) => ({ ...prevState, [name]: value }));
+   
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    post('books', book);
+    const updatedBook = {
+      ...book,
+      img: book.img || "https://upload.wikimedia.org/wikipedia/en/e/e4/Steve_Jobs_by_Walter_Isaacson.jpg",
+    };
+    post('books', updatedBook);
+    setBook({
+      author: '',
+      name: '',
+      genres: [],
+      img: '',
+      completed: false,
+      start: null,
+      end: null,
+      stars: null,
+    });
   }
 
   const genreChangeHandler = (event) => {  // define a function for splitting the genres
@@ -68,7 +84,7 @@ function AddBook() {  //define a function for adding a book
 
 
   return (
-    <form onChange={addBookHandler} onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <Stack //used stack to set the spacing and alignment of the form
         spacing={1}
         alignItems="stretch"
@@ -86,6 +102,7 @@ function AddBook() {  //define a function for adding a book
           id="outlined-basic"
           label="Title"
           variant="outlined"
+          value={book.name}
           onChange={handleChange}
         />
         <TextField  //textfield for the author of the book
@@ -93,6 +110,7 @@ function AddBook() {  //define a function for adding a book
           id="outlined-basic"
           label="Author"
           variant="outlined"
+          value={book.author}
           onChange={handleChange}
         />
         <TextField  //textfield for the image of the book
@@ -100,6 +118,7 @@ function AddBook() {  //define a function for adding a book
           id="outlined-basic"
           label="Image (url)"
           variant="outlined"
+          value={book.img}
           onChange={handleChange}
         />
         <Select //select for the genres of the book
@@ -122,11 +141,27 @@ function AddBook() {  //define a function for adding a book
           name="completed"
           control={<Checkbox checked={book.completed} />}
           label="Completed"
+          onChange={addBookHandler}
         />
 
-        <DateField name="start" label="Started" />  {/* datefield for the start date of the book */}
+        <DateField  //datefield for the start date of the book
+        name="start"
+        label="Started"
+        value={book.start}
+        onChange={(newValue) => {
+          setBook((prevState) => ({...prevState, start: newValue}));
+          }}
+        />  
 
-        <DateField name="end" label="Finished" disabled={!book.completed} /> {/* datefield for the end date of the book */}
+        <DateField
+         name="end"
+        label="Finished" 
+        value={book.end}
+        onChange={(newValue) => {
+          setBook((prevState) => ({...prevState, end: newValue}));
+          }}
+        disabled={!book.completed}
+       /> 
 
         <Stack spacing={1}>
           <Rating  //rating for the book
