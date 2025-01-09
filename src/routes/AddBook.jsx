@@ -73,8 +73,11 @@ function AddBook() {  //define a function for adding a book
         spacing={1}
         alignItems="stretch"
         sx={{ my: 2, mx: 'auto', width: '25%' }}
-      >
-        {alert.show && <Alert severity={alert.type}>{alert.message}</Alert>}   {/* used alert to show the message */}
+            >
+        {alert.show && 
+        <Alert severity={alert.type}>
+        {alert.message} {setTimeout(() => {}, 5000)}</Alert> }   {/* used alert to show the message */}
+
         <Typography variant="h4" component="h2" sx={{ my: 10 }}>  {/*  header of the form */}
           Add a book
         </Typography>
