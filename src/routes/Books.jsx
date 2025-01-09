@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import '../services/useAxios';
 import { TextField, IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import { useNavigate } from 'react-router-dom';
 
 
 import {  
@@ -26,7 +27,11 @@ function Books() {  //define a function for books
   const apiURL = 'http://localhost:3000';  //set the apiURL
   const { data, loading, get} = useAxios(apiURL);
 
+  const navigate = useNavigate();
 
+  const handleLearnMore = (id) => {
+    navigate(`/book/${id}`);
+  }
 
   useEffect(() => {  //used useEffect to get the books, if the books are empty then get the books
     if (!data || data.length === 0) {
@@ -128,7 +133,7 @@ function Books() {  //define a function for books
                     readOnly
                     size="small"
                   />
-                  <Button size="small">Learn More</Button>
+                  <Button onClick={() => handleLearnMore(book.id)} size="small">Learn More</Button>
                 </CardActions>
               </Card>
             ))}
