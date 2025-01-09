@@ -11,12 +11,10 @@ import Alert from '@mui/material/Alert';
 import { DateField } from '@mui/x-date-pickers/DateField';
 import useAxios from '../services/useAxios';
 import { bookGenres } from '../genres';
-import { Stack, Typography } from '@mui/material';
+import { Stack, Typography, Box } from '@mui/material';
 
 function AddBook() {  //define a function for adding a book
-
-  const [rateValue, setRateValue] = useState(3); //used useState to set the rate value
-  const [book, setBook] = useState({  //used useState to set the details of the book
+  const newBook = {  //used useState to set the details of the book
     author: '',
     name: '',
     genres: [],
@@ -24,8 +22,11 @@ function AddBook() {  //define a function for adding a book
     completed: false,
     start: null,
     end: null,
-    stars: null,
-  });
+    stars: 0,
+  }
+
+  const [rateHover, setRateHover] = useState(); //used useState to set the rate value
+  const [book, setBook] = useState(newBook);  //used useState to set the book details
 
   const { alert, post} = useAxios('http://localhost:3000');  //use the useAxios hook to get the alert and post
 
@@ -42,16 +43,7 @@ function AddBook() {  //define a function for adding a book
       img: book.img || "https://upload.wikimedia.org/wikipedia/en/e/e4/Steve_Jobs_by_Walter_Isaacson.jpg",
     };
     post('books', updatedBook);
-    setBook({
-      author: '',
-      name: '',
-      genres: [],
-      img: '',
-      completed: false,
-      start: null,
-      end: null,
-      stars: null,
-    });
+    setBook(newBook);
   }
 
   const genreChangeHandler = (event) => {  // define a function for splitting the genres
@@ -63,12 +55,11 @@ function AddBook() {  //define a function for adding a book
     handleChange(event);
   };
 
-  const rateChangeHandler = (event) => {  //define a function for rating the book
-    const { value } = event.target;
-    setBook({
-      ...book,
-      stars: value,
-    });
+  const rateChangeHandler = (event, newValue) => {  //define a function for rating the book
+    setBook((prevState) => ({
+       ...prevState,
+        stars: +newValue, 
+      }));
   };
 
   const addBookHandler = (e) => {  // define a function for checking if the name is completed then chekbox sholud be clicked
@@ -148,6 +139,7 @@ function AddBook() {  //define a function for adding a book
         name="start"
         label="Started"
         value={book.start}
+        format='YYYY-MM-DD'
         onChange={(newValue) => {
           setBook((prevState) => ({...prevState, start: newValue}));
           }}
@@ -157,23 +149,26 @@ function AddBook() {  //define a function for adding a book
          name="end"
         label="Finished" 
         value={book.end}
+        format='YYYY-MM-DD'
         onChange={(newValue) => {
           setBook((prevState) => ({...prevState, end: newValue}));
           }}
         disabled={!book.completed}
        /> 
 
-        <Stack spacing={1}>
+        <Box sx={{ width: 200, display: 'flex', alignItems: 'center' }}>
           <Rating  //rating for the book
             name="stars"
-            value={rateValue}
-            onClick={rateChangeHandler}
+            value={book.stars || 0}
             size="large"
-            onChange={(event, newValue) => {
-              setRateValue(newValue);
-            }}
+            onChange={rateChangeHandler}
+            onChangeActive={(event, newHover) => 
+              setRateHover(newHover)
+            }
           />
-        </Stack>
+          {(rateHover !== null) && (<Box sx={{fontSize: 20}}>{rateHover !== -1 ? rateHover : book.stars}</Box>)}
+        </Box>
+
 
         <Button variant="contained" type="submit"> {/* button for adding a new book */}
           Add new
