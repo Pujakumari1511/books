@@ -73,27 +73,15 @@
       "author": "Puja",
       "name": "Holiday App",
       "genres": [
-        "Mystery"
+        "Fantasy",
+        "Dystopian"
       ],
+      "img": "https://upload.wikimedia.org/wikipedia/en/e/e4/Steve_Jobs_by_Walter_Isaacson.jpg",
       "completed": true,
-      "start": "02/20/4",
-      "end": "03/04/4",
-      "stars": null,
-      "img": "\"https://upload.wikimedia.org/wikipedia/en/0/05/Littleprince.JPG\"",
+      "start": "2021-09-20T21:00:00.000Z",
+      "end": "2022-10-22T21:00:00.000Z",
+      "stars": "4",
       "id": 6
-    },
-    {
-      "author": "Puja",
-      "name": "Holiday App",
-      "genres": [
-        "Business"
-      ],
-      "completed": true,
-      "start": "02/22/5",
-      "end": "02/14/4",
-      "stars": null,
-      "img": "\"https://upload.wikimedia.org/wikipedia/en/0/05/Littleprince.JPG\"",
-      "id": 7
     }
   ]
 }
