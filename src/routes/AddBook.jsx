@@ -40,7 +40,7 @@ function AddBook() {  //define a function for adding a book
     e.preventDefault();
     const updatedBook = {
       ...book,
-      img: book.img || "https://upload.wikimedia.org/wikipedia/en/e/e4/Steve_Jobs_by_Walter_Isaacson.jpg",
+      img: book.img || "https://greenhousescribes.com/wp-content/uploads/2020/10/book-cover-generic.jpg",
     };
     post('books', updatedBook);
     setBook(newBook);
