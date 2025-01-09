@@ -14,7 +14,7 @@ import { bookGenres } from '../genres';
 import { Stack, Typography } from '@mui/material';
 
 function AddBook() {  //define a function for adding a book
-  const { alert, post } = useAxios('http://localhost:3001');  //use the useAxios hook to get the alert and post
+
   const [rateValue, setRateValue] = useState(3); //used useState to set the rate value
   const [book, setBook] = useState({  //used useState to set the details of the book
     author: '',
@@ -26,12 +26,25 @@ function AddBook() {  //define a function for adding a book
     stars: null,
   });
 
+  const { alert, post} = useAxios('http://localhost:3000');  //use the useAxios hook to get the alert and post
+
+  const handleChange = (e) => {
+    const {name, value} = e.target;
+    setBook((prevState) => ({...prevState, [name]: value}));
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    post('books', book);
+  }
+
   const genreChangeHandler = (event) => {  // define a function for splitting the genres
     const { value } = event.target;
     setBook({
       ...book,
       genres: typeof value === 'string' ? value.split(',') : value,
     });
+    handleChange(event);
   };
 
   const rateChangeHandler = (event) => {  //define a function for rating the book
@@ -51,12 +64,11 @@ function AddBook() {  //define a function for adding a book
     }
   };
 
-  function postHandler() {
-    post('books', book);
-  }
+
+
 
   return (
-    <form onChange={addBookHandler} onSubmit={postHandler}>
+    <form onChange={addBookHandler} onSubmit={handleSubmit}>
       <Stack //used stack to set the spacing and alignment of the form
         spacing={1}
         alignItems="stretch"
@@ -71,18 +83,21 @@ function AddBook() {  //define a function for adding a book
           id="outlined-basic"
           label="Title"
           variant="outlined"
+          onChange={handleChange}
         />
         <TextField  //textfield for the author of the book
           name="author"
           id="outlined-basic"
           label="Author"
           variant="outlined"
+          onChange={handleChange}
         />
         <TextField  //textfield for the image of the book
           name="img"
           id="outlined-basic"
           label="Image (url)"
           variant="outlined"
+          onChange={handleChange}
         />
         <Select //select for the genres of the book
           labelId="demo-multiple-name-label"
@@ -107,7 +122,9 @@ function AddBook() {  //define a function for adding a book
         />
 
         <DateField name="start" label="Started" />  {/* datefield for the start date of the book */}
+
         <DateField name="end" label="Finished" disabled={!book.completed} /> {/* datefield for the end date of the book */}
+
         <Stack spacing={1}>
           <Rating  //rating for the book
             name="stars"
@@ -119,6 +136,7 @@ function AddBook() {  //define a function for adding a book
             }}
           />
         </Stack>
+
         <Button variant="contained" type="submit"> {/* button for adding a new book */}
           Add new
         </Button>
