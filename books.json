@@ -70,18 +70,31 @@
       "img": "https://www.davidjpphillips.com/wp-content/uploads/2023/08/highonlife_copy-195x300.jpg"
     },
     {
-      "author": "Puja",
+      "author": "Chetan Bhagat",
       "name": "Holiday App",
       "genres": [
-        "Fantasy",
-        "Dystopian"
+        "Business",
+        "Thriller"
       ],
       "img": "https://upload.wikimedia.org/wikipedia/en/e/e4/Steve_Jobs_by_Walter_Isaacson.jpg",
       "completed": true,
-      "start": "2021-09-20T21:00:00.000Z",
-      "end": "2022-10-22T21:00:00.000Z",
-      "stars": "4",
+      "start": "2024-09-23T21:00:00.000Z",
+      "end": "2024-10-23T21:00:00.000Z",
+      "stars": 0,
       "id": 6
+    },
+    {
+      "author": "Ajay Sharma",
+      "name": "Holiday App",
+      "genres": [
+        "Biography"
+      ],
+      "img": "https://upload.wikimedia.org/wikipedia/en/e/e4/Steve_Jobs_by_Walter_Isaacson.jpg",
+      "completed": true,
+      "start": "2024-08-22T21:00:00.000Z",
+      "end": "2024-09-22T21:00:00.000Z",
+      "stars": 4,
+      "id": 7
     }
   ]
 }

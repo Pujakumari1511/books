@@ -84,7 +84,7 @@ function Books() {  //define a function for books
             useFlexGap
             flexWrap="wrap"
           >
-            {filteredBooks?.map((book) => (
+            {filteredBooks?.map((book, index) => (
               <Card
                 sx={{
                   display: 'flex',
@@ -92,7 +92,7 @@ function Books() {  //define a function for books
                   width: '15%',
                   minWidth: 200,
                 }}
-                key={book.name}
+                key={`${book.name}-${index}`}
               >
                 <CardMedia
                   sx={{ height: 250 }}
@@ -124,7 +124,7 @@ function Books() {  //define a function for books
                 >
                   <Rating
                     name="read-only"
-                    value={book.stars}
+                    value={+book.stars}
                     readOnly
                     size="small"
                   />
