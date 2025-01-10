@@ -12,7 +12,14 @@ function Book() {
     }, [id]);
 
     return (
-        <Box sx={{ mx: 'auto', p: 2 }}>
+        <Box sx={{ 
+            mx: 'auto', 
+            p: 2,
+            border: '2px solid rgb(159, 75, 6)',
+            padding: '16px',
+            margin: '1rem', 
+            backgroundColor: 'rgb(240, 231, 216)',
+            }}>
             {(!book || loading) ? <CircularProgress />
             : (<Stack sx={{ justifyContent: 'space-around', alignItems: 'center' }}>
                 <Grid2 container rowSpacing={4} columnSpacing={16}>
@@ -30,7 +37,7 @@ function Book() {
                                 />
                         </Stack>
                     </Grid2>
-                    <Grid2 size={{ xs:12, sm: 7 }} alignContent={"center"}>
+                    <Grid2 size={{ xs:12, sm: 7 }}  paddingLeft={'3rem'} paddingTop={'6rem'}>
                         <Stack direction={"row"} spacing={2} alignItems={"center"}>
                             <Typography variant="h6">Author:</Typography>
                             <Typography variant={"body1"}>{book.author}</Typography>
@@ -41,7 +48,9 @@ function Book() {
                         </Stack>
                         <Stack direction={"row"} spacing={2} alignItems={"center"}>
                             <Typography variant="h6">Completed:</Typography>
-                            <Typography variant={"body1"}>{book.completed ? "v" : "x"}</Typography>
+                            <Typography variant={"body1"}>
+                                {book.completed ? "✔️" : "❌"}
+                            </Typography>
                         </Stack>
                         <Stack direction={"row"} spacing={2} alignItems={"center"}>
                             <Typography variant="h6">Started:</Typography>
@@ -56,8 +65,7 @@ function Book() {
             </Stack>
             )}
         </Box>
-        
- );
+    );
 }
 
 export default Book;

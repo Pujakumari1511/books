@@ -60,7 +60,7 @@ function Books() {  //define a function for books
   }, [searchQuery, data]);
 
   return (
-    <Box sx={{ mx: 'auto', p: 2 }}>
+    <Box sx={{ mx: 'auto', p: 2 }} className="books">
       {loading && <CircularProgress />}
       {!loading && (
         <div>
